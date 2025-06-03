@@ -80,7 +80,7 @@ const LoginForm: React.FC<Props> = ({ onSubmit, loading, error }) => {
             </div>
 
             <div className="text-center mt-4 text-sm">
-                <a href="#" className="text-header underline font-cap-link">¿Eres nuevo? Crea una cuenta</a>
+                <a href="/register" className="text-header underline font-cap-link">¿Eres nuevo? Crea una cuenta</a>
             </div>
             </form>
         </div>

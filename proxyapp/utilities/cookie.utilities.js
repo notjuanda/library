@@ -3,7 +3,7 @@ const createSessionCookie = (res, token, refresh) => {
         httpOnly: true,
         secure: true,
         sameSite: 'None',
-        maxAge: 1 * 60 * 1000
+        maxAge: 160 * 60 * 1000
     });
     if (refresh) {
         res.cookie('refresh', refresh, {

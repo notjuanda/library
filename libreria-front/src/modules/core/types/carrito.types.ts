@@ -5,6 +5,7 @@ export interface CarritoItem {
     libro: Libro;
     libro_id: number;
     cantidad: number;
+    carrito?: number;
 }
 
 export interface Carrito {

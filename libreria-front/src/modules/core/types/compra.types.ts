@@ -17,3 +17,13 @@ export interface Compra {
     estado: 'pendiente' | 'confirmada' | 'cancelada';
     detalles: DetalleCompra[];
 }
+export interface DetalleCompraCreate {
+    libro_id: number;
+    cantidad: number;
+}
+export interface CompraCreateInput {
+    monto_total: number;
+    qr: string;
+    detalles: DetalleCompraCreate[];
+    comprobante_pago?: string;
+}

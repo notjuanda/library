@@ -1,3 +1,5 @@
+import type { IRegisterData } from "./register.types";
+
 export interface IUser {
     id: number;
     username: string;
@@ -14,4 +16,5 @@ export interface IAuthContext {
     login: (username: string, password: string) => Promise<IUser>;
     logout: () => void;
     refreshToken: () => Promise<void>;
+    register: (data: IRegisterData) => Promise<IUser>;
 }

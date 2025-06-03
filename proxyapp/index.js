@@ -28,12 +28,19 @@ app.use(cors({
 
 
 require('./routes/user.routes')(app);
-const onProxyReq = async function (proxyReq, req, res) {
+const onProxyReq = (proxyReq, req, res) => {
     const token = req.cookies.session;
     if (token) {
         proxyReq.setHeader('Authorization', 'Bearer ' + token);
     }
-}
+    if (req.body && Object.keys(req.body).length) {
+        const bodyData = JSON.stringify(req.body);
+        proxyReq.setHeader('Content-Type', 'application/json');
+        proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+        proxyReq.write(bodyData);
+    }
+};
+
 app.use('/webproxy',
     createProxyMiddleware({
         target: 'http://127.0.0.1:8000/api/',

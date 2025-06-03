@@ -3,6 +3,7 @@ import type { IUser } from '../types/auth.types';
 import { AuthContext } from '../context/auth.context';
 import instance from '../api/instance.api';
 import axios from 'axios';
+import type { IRegisterData } from '../types/register.types';
 
 interface Props {
   children: ReactNode;
@@ -61,8 +62,18 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
+  const register = async (userData: IRegisterData) => {
+    try {
+      const { data } = await instance.post('/auth/register/', userData);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, refreshToken }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, refreshToken, register }}>
       {children}
     </AuthContext.Provider>
   );

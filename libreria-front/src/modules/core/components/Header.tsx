@@ -10,16 +10,16 @@ const Header: React.FC = () => {
     const toggleMobileMenu = () => setMobileOpen(!mobileOpen);
 
     return (
-        <header className="bg-gray-900 text-white shadow-md fixed w-full z-50">
-        <div className="container mx-auto px-4 flex items-center justify-between h-16">
-            <div className="text-xl font-bold">Mi App</div>
+        <header className="bg-header text-white shadow-md fixed w-full z-50 font-cap">
+        <div className="container mx-auto px-6 flex items-center justify-between h-16">
+            <div className="text-xl font-cap-logo cursor-pointer select-none">Mi App</div>
 
-            <nav className="hidden md:flex space-x-6">
+            <nav className="hidden md:flex space-x-8">
             <DesktopMenu user={user || null} logout={logout} />
             </nav>
 
             <button
-            className="md:hidden focus:outline-none"
+            className="md:hidden focus:outline-none text-white hover:text-highlight transition"
             aria-label="Toggle menu"
             onClick={toggleMobileMenu}
             >
@@ -47,6 +47,7 @@ const Header: React.FC = () => {
                 )}
             </svg>
             </button>
+
         </div>
 
         {mobileOpen && <MobileMenu user={user || null} logout={logout} toggleMobileMenu={toggleMobileMenu} />}

@@ -5,6 +5,8 @@ const API_URL = '/carritos/';
 
 export const getCarrito = async (): Promise<Carrito> => {
     const { data } = await instance.get(API_URL);
+    console.log('Carrito fetched:', data);
+    console.log('entrado a getCarrito');
     return data;
 };
 
@@ -26,6 +28,7 @@ const CAR_ITEM_URL = '/carrito-items/';
 
 export const getCarritoItems = async (): Promise<CarritoItem[]> => {
     const { data } = await instance.get(CAR_ITEM_URL);
+    console.log('Carrito items fetched:', data);
     return data;
 };
 
