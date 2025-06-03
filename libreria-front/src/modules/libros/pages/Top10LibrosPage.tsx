@@ -10,6 +10,7 @@ interface Props {
 
 const LibrosMasVendidosYListado: React.FC<Props> = ({ onDelete }) => {
     const { data: top10Libros, isLoading: isLoadingTop10, error: errorTop10 } = useTop10Libros();
+    console.log("Top 10 Libros:", top10Libros);
     const { data: libros, isLoading: isLoadingLibros, error: errorLibros } = useLibros();
 
     if (isLoadingTop10 || isLoadingLibros) {
@@ -24,7 +25,8 @@ const LibrosMasVendidosYListado: React.FC<Props> = ({ onDelete }) => {
         return <p className="text-destructive">Error cargando libros: {errorLibros.message}</p>;
     }
 
-    const topVendidosValidos = top10Libros?.filter(libro => libro.ventas > 0) ?? [];
+    const topVendidosValidos = top10Libros ?? [];
+
 
     return (
         <>
@@ -36,16 +38,17 @@ const LibrosMasVendidosYListado: React.FC<Props> = ({ onDelete }) => {
                     <section>
                         <h2 className="text-2xl font-bold mb-4">Los 10 más vendidos</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            {topVendidosValidos.map(libro => (
-                                <LibroCard key={libro.id} libro={libro} onDelete={onDelete} />
-                            ))}
+                        {topVendidosValidos.map(libro => (
+                            <LibroCard key={libro.id} libro={libro} onDelete={onDelete} />
+                        ))}
                         </div>
                     </section>
                 )}
+
             </div>
             <section>
                 <h2 className="text-2xl font-bold mb-4">Todos los libros</h2>
-                {libros && libros.length > 0 ? (
+                {Array.isArray(libros) && libros.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {libros.map(libro => (
                             <LibroCard key={libro.id} libro={libro} onDelete={onDelete} />
@@ -55,7 +58,6 @@ const LibrosMasVendidosYListado: React.FC<Props> = ({ onDelete }) => {
                     <p>No hay libros para mostrar.</p>
                 )}
             </section>
-
         </>
     );
 };

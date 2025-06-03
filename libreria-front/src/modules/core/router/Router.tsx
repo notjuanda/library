@@ -15,7 +15,7 @@ import Top10LibrosPage from "@/modules/libros/pages/Top10LibrosPage.tsx";
 import LibroDetailPage from "@/modules/libros/pages/LibroDetailPage.tsx";
 import LibrosPorGeneroPage from "@/modules/libros/pages/LibrosPorGeneroPage.tsx";
 import CarritoPage from "@/modules/carrito/pages/CarritoItemPage.tsx";
-import ProcesarPagoPage from "@/modules/carrito/pages/ProcesarPago.tsx";
+import CompraDetallePage from "@/modules/compras/pages/CompraDetallePage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -83,6 +83,14 @@ const router = createBrowserRouter([
             {
                 path: "/carrito",
                 element: <CarritoPage />,
+            },
+            {
+                path: "/perfil",
+                element: <ComprasPage />,
+            },
+            {
+                path: "/compras/:id",
+                element: <CompraDetallePage />,
             }
         ],
         

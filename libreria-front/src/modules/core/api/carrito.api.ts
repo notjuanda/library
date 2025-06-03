@@ -24,6 +24,10 @@ export const deleteCarrito = async (id: number): Promise<void> => {
     await instance.delete(`${API_URL}${id}/`);
 };
 
+export const eliminarMiCarrito = async (): Promise<void> => {
+    await instance.post(`${API_URL}eliminar_mi_carrito/`);
+};
+
 const CAR_ITEM_URL = '/carrito-items/';
 
 export const getCarritoItems = async (): Promise<CarritoItem[]> => {
