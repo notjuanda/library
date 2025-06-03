@@ -11,7 +11,7 @@ export interface IUser {
 export interface IAuthContext {
     user: IUser | null | false;
     loading: boolean;
-    login: (username: string, password: string) => Promise<void>;
+    login: (username: string, password: string) => Promise<IUser>;
     logout: () => void;
     refreshToken: () => Promise<void>;
 }
